@@ -14,7 +14,7 @@ RUN rm -rf /tmp/hellotrello; true
 RUN git clone https://github.com/frdmn/docker-slack-irc-plugin.git /tmp/hellotrello
 WORKDIR /tmp/hellotrello
 # Install hellotrello
-RUN npm install
+RUN bundle install
 
 # Make sure our configuration is used
 ADD opt/config.yml /tmp/
