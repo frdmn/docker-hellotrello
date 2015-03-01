@@ -11,7 +11,7 @@ RUN gem install bundler --no-ri --no-rdoc
 
 # Clone hellotrello from git
 RUN rm -rf /tmp/hellotrello; true
-RUN git clone https://github.com/frdmn/docker-slack-irc-plugin.git /tmp/hellotrello
+RUN git clone https://github.com/frdmn/hellotrello.git /tmp/hellotrello
 WORKDIR /tmp/hellotrello
 # Install hellotrello
 RUN bundle install
