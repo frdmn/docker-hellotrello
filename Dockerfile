@@ -8,12 +8,12 @@ RUN gem install rubygems-update --no-ri --no-rdoc
 RUN update_rubygems
 RUN gem install bundler --no-ri --no-rdoc
 
-ADD config.js /tmp/
+ADD opt/config.yml /tmp/
 
 RUN rm -rf /tmp/hellotrello; true
 RUN git clone https://github.com/frdmn/docker-slack-irc-plugin.git /tmp/hellotrello
 WORKDIR /tmp/hellotrello
 RUN npm install
-RUN cp /tmp/config.js /tmp/hellotrello/config.js
+RUN cp /tmp/config.yml /tmp/hellotrello/config.yml
 
 RUN ruby hellotrello.rb
