@@ -1,3 +1,4 @@
+# Base image
 FROM ubuntu:13.10
 MAINTAINER j@frd.mn
 
@@ -8,12 +9,16 @@ RUN gem install rubygems-update --no-ri --no-rdoc
 RUN update_rubygems
 RUN gem install bundler --no-ri --no-rdoc
 
+# Clone hellotrello from git
 RUN rm -rf /tmp/hellotrello; true
 RUN git clone https://github.com/frdmn/docker-slack-irc-plugin.git /tmp/hellotrello
 WORKDIR /tmp/hellotrello
+# Install hellotrello
 RUN npm install
 
+# Make sure our configuration is used
 ADD opt/config.yml /tmp/
 RUN cp /tmp/config.yml /tmp/hellotrello/config.yml
 
+# Start bot
 RUN ruby hellotrello.rb
