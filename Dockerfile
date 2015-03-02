@@ -21,4 +21,4 @@ ADD opt/config.yml /tmp/
 RUN cp /tmp/config.yml /tmp/hellotrello/config.yml
 
 # Start bot
-RUN ruby hellotrello.rb
+CMD ruby hellotrello.rb
