@@ -11,9 +11,9 @@ Dockerized version of @marcohamersma' [hellotrello](https://github.com/marcohame
   `cp opt/config.example.yml opt/config.yml`  
   `vi opt/config.yml`  
 1. Build docker image:  
-  `docker build -t hellotrello .`
+  `make build`
 1. Run container:  
-  `docker run hellotrello`
+  `make run`
 
 ### Version
 1.0.0
