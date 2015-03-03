@@ -1,6 +1,7 @@
 AUTHOR = frdmn
 NAME = docker-hellotrello
 VERSION = 1.0.0
+SHELL := /bin/bash
 
 .PHONY: all build
 
@@ -10,7 +11,7 @@ build:
 	docker build -t "$(AUTHOR)/$(NAME):$(VERSION)" .
 
 stop:
-	@if [[ `docker inspect -f {{.State.Running}} "$(NAME)" 2> /dev/null` == "true" ]]; then \
+	@if [[ "$(shell docker inspect -f {{.State.Running}} "$(NAME)" 2> /dev/null)" == "true" ]]; then \
 		printf "INFO: Stopping running container '$(NAME)' ..."; \
 		docker stop "$(NAME)" &> /dev/null && printf " done!\n" || printf " failed!\n"; \
 	else \
@@ -18,7 +19,7 @@ stop:
 	fi
 
 remove:
-	@if [[ `docker inspect -f {{.State.Running}} "$(NAME)" 2> /dev/null` == "false" ]]; then \
+	@if [[ "$(shell docker inspect -f {{.State.Running}} "$(NAME)" 2> /dev/null)" == "false" ]]; then \
 		printf "INFO: Removing existing container '$(NAME)' ..."; \
 		docker rm "$(NAME)" &> /dev/null && printf " done!\n" || printf " failed!\n"; \
 	else \
@@ -27,4 +28,4 @@ remove:
 
 run: stop remove
 	@printf "INFO: Starting new container '$(NAME)' ..."
-	@docker run -d --name="${NAME}" ${AUTHOR}/${NAME}:${VERSION} &> /dev/null && printf " done!\n" || printf " failed!\n"
+	@docker run -d --name="${NAME}" $(AUTHOR)/$(NAME):$(VERSION) &> /dev/null && printf " done!\n" || printf " failed!\n"
