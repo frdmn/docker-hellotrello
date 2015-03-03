@@ -1,6 +1,6 @@
 # Base image
 FROM ubuntu:13.10
-MAINTAINER j@frd.mn
+MAINTAINER Jonas Friedmann <j@frd.mn>
 
 # Install dependencies.
 RUN apt-get update
