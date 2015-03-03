@@ -13,6 +13,7 @@ RUN gem install bundler --no-ri --no-rdoc
 RUN rm -rf /tmp/hellotrello; true
 RUN git clone https://github.com/frdmn/hellotrello.git /tmp/hellotrello
 WORKDIR /tmp/hellotrello
+
 # Install hellotrello
 RUN bundle install
 
